@@ -13,6 +13,16 @@ docker buildx use testbuilder
 ```
 ```cmd
 docker buildx inspect --bootstrap
+
+Name:   testbuilder
+Driver: docker-container
+
+Nodes:
+Name:      testbuilder0
+Endpoint:  unix:///var/run/docker.sock
+Status:    running
+Platforms: linux/amd64, linux/arm64, linux/riscv64, linux/ppc64le, linux/s390x, linux/386, linux/mips64le, linux/mips64, linux/arm/v7, linux/arm/v6
+
 ```
 ```cmd
 docker buildx build -t wojmaj/lab_4:tagname --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6 --push .
