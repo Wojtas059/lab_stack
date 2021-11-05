@@ -8,9 +8,15 @@ Polecenia:
 ```cmd
 docker buildx create --name testbuilder
 ```
+Komenda tworzy kontener ze wbudowanym srodowiskiem buildx o nazwie testbuilder
+
+
 ```cmd
 docker buildx use testbuilder
 ```
+Komenda pozwalajaca na uzytkwowanie nowo powstalego kontenera 
+Po prostu wskazanie z jakiego kontenera ma kozystac buildx
+
 ```cmd
 docker buildx inspect --bootstrap
 
@@ -22,11 +28,16 @@ Name:      testbuilder0
 Endpoint:  unix:///var/run/docker.sock
 Status:    running
 Platforms: linux/amd64, linux/arm64, linux/riscv64, linux/ppc64le, linux/s390x, linux/386, linux/mips64le, linux/mips64, linux/arm/v7, linux/arm/v6
-
 ```
+Sprawdzenie na jakie architektury bedzie mozliwe postawienie obrazu kontenera
+
+
 ```cmd
 docker buildx build -t wojmaj/lab_4:tagname --platform linux/amd64,linux/arm64,linux/arm/v7,linux/arm/v6 --push .
 ```
+Komenda sluzaca do postawienia obrazow kontenera na wybranych architekturach a nastepnie pushowane na repozytorium na DockerHub.
+
+
 ```cmd
 
 docker buildx imagetools inspect wojmaj/lab_4:tagname
@@ -52,4 +63,10 @@ Manifests:
   Platform:  linux/arm/v6
 
 ```
+Sprawdzenie czy zostala wykonana zostala komenda i wyswietlenie od strony klienta danych obrazow kontenera 
 
+```cmd
+docker ps
+CONTAINER ID   IMAGE                           COMMAND       CREATED       STATUS       PORTS     NAMES
+adf3417b45ef   moby/buildkit:buildx-stable-1   "buildkitd"   2 hours ago   Up 2 hours             buildx_buildkit_testbuilder0
+```
